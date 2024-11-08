@@ -1,0 +1,10 @@
+.loadingHeight{
+    height: 40vh;
+}
+.noActive{
+    background: rgba(146, 46, 37, 0.7);
+}
+
+.image{
+border-radius: 50%;
+}
