@@ -1,10 +1,12 @@
 import { useState, useRef, useContext } from "react";
-import {
-  useForm,
-  toast,
-} from "../../Utls/index.ts";
+// import {
+//   useForm,
+//   toast,
+// } from "../../Utls/index.ts";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext.tsx";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 
 export default function ChangePassword() {
