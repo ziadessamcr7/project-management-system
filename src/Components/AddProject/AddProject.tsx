@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthContext';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 
 
 export default function AddProject() {
 
 
     const { BaseUrl, requestHeaders }: any = useContext(AuthContext)
-    const [loading, setLoading]: any = useState(false)
+    // const [loading, setLoading]: any = useState(false)
 
 
     const nav = useNavigate()
@@ -22,13 +21,13 @@ export default function AddProject() {
     }: any = useForm()
 
     const addProject = (data: any) => {
-        setLoading(true)
+        // setLoading(true)
         axios.post(`${BaseUrl}/Project`, data, {
             headers: requestHeaders
         }).then((response) => {
             console.log(response);
             nav('/dashboard/projects')
-            setLoading(false)
+            // setLoading(false)
 
         })
             .catch((error) => {

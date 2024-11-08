@@ -1,11 +1,8 @@
-import React, { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext } from "react";
 import {
   useForm,
   toast,
-  useNavigate,
-  Modal,
 } from "../../Utls/index.ts";
-import Loading from "../Loading/Loading.tsx";
 import axios from "axios";
 import { AuthContext } from "../../Context/AuthContext.tsx";
 
@@ -21,7 +18,7 @@ export default function ChangePassword() {
     watch,
   }: any = useForm();
   const [isLoading, setisLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   let password = useRef({});
   password = watch("newPassword");
 

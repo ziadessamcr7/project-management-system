@@ -8,7 +8,6 @@ import { Hourglass } from 'react-loader-spinner';
 import { Modal } from 'react-bootstrap';
 import Loading from '../Loading/Loading';
 import { useForm } from 'react-hook-form';
-import ReactPaginate from 'react-paginate';
 import noDataImg from '../../assets/images/freepik--Character--inject-70.png'
 
 
@@ -24,7 +23,7 @@ export default function Projects() {
 
   const [projDetails, setProjDetails]: any = useState(0)
 
-  const [toltalNumberOfPages, settotalNumOfPages] = useState(0)
+  // const [toltalNumberOfPages, settotalNumOfPages] = useState(0)
 
   const [modalState, setModalState] = useState('close');
 
@@ -70,7 +69,7 @@ export default function Projects() {
       setProjectList(response?.data.data)
 
       setIsLoading(false)
-      settotalNumOfPages(response?.data.totalNumberOfPages)
+      // settotalNumOfPages(response?.data.totalNumberOfPages)
     })
       .catch((error) => {
         console.log(error);
@@ -133,10 +132,10 @@ export default function Projects() {
     })
   }
 
-  const handlePageChange = (data: any) => {
-    console.log(data);
-    getAllProjects(data.selected + 1, null)
-  }
+  // const handlePageChange = (data: any) => {
+  //   console.log(data);
+  //   getAllProjects(data.selected + 1, null)
+  // }
 
   const searchProjcets = (e: any) => {
     console.log(e.target.value);

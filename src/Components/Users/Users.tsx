@@ -4,27 +4,26 @@ import { AuthContext } from "../../Context/AuthContext";
 import axios from "axios";
 import css from "./Users.module.css";
 import { toast } from "react-toastify";
-import Loading from "../Loading/Loading";
 import { Link } from "react-router-dom";
-import ReactPaginate from "react-paginate";
 import { Hourglass } from "react-loader-spinner";
 
 export default function Users() {
   const [usersList, setUsersList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [id, setId] = useState(0);
+  // const [id, setId] = useState(0);
   const [srchValue, setSrchValue] = useState(null);
   const [filterRole, setFilterRole] = useState(null);
-  const [show, setShow] = useState(false);
-  let { BaseUrl, requestHeaders, userRole }: any = useContext(AuthContext);
-  const [toltalNumberOfPages, setToltalNumberOfPages] = useState(0);
-  let [CurrentPage, setCurrentPage] = useState(0);
+  // const [show, setShow] = useState(false);
+  let { BaseUrl, requestHeaders }: any = useContext(AuthContext);
+  // const [toltalNumberOfPages, setToltalNumberOfPages] = useState(0);
+  // let [CurrentPage, setCurrentPage] = useState(0);
 
-  const handleShow: (id: number) => void = (id) => {
-    setShow(true);
-    setId(id);
-  };
-  const handleClose: () => void = () => setShow(false);
+  // const handleShow: (id: number) => void = (id) => {
+  //   setShow(true);
+  //   setId(id);
+  // };
+
+  // const handleClose: () => void = () => setShow(false);
 
 
   const getUserList = (pageNum: any, usrName: any, grps: any) => {
@@ -48,7 +47,7 @@ export default function Users() {
 
         setIsLoading(false);
         setUsersList(res?.data?.data);
-        setToltalNumberOfPages(res?.data?.totalNumberOfPages);
+        // setToltalNumberOfPages(res?.data?.totalNumberOfPages);
 
       })
       .catch((err: any) => {
@@ -69,14 +68,14 @@ export default function Users() {
 
 
 
-  let handlPageChange = (data: any) => {
-    console.log(data.selected + 1);
+  // let handlPageChange = (data: any) => {
+  //   console.log(data.selected + 1);
 
-    let currentPage = data.selected + 1
+  //   let currentPage = data.selected + 1
 
-    getUserList(currentPage, srchValue, filterRole)
+  //   getUserList(currentPage, srchValue, filterRole)
 
-  }
+  // }
 
 
   useEffect(() => {
@@ -165,9 +164,9 @@ export default function Users() {
                         <Dropdown>
                           <Dropdown.Toggle variant=""></Dropdown.Toggle>
                           <Dropdown.Menu>
-                            <Dropdown.Item onClick={() => handleShow(user.id)}>
+                            {/* <Dropdown.Item onClick={() => handleShow(user.id)}>
                               <i className="fa-solid fa-pen-fancy"></i> Block
-                            </Dropdown.Item>
+                            </Dropdown.Item> */}
 
                             <Link className=" ps-3 pe-5 text-decoration-none text-dark w-100" to={`/dashboard/user-details/${user.id}`}>
                               <i className="fa-regular fa-eye"></i> View

@@ -13,12 +13,12 @@ import Projects from './Components/Projects/Projects';
 import Users from './Components/Users/Users';
 import Tasks from './Components/Tasks/Tasks';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
 
 
 
-import { ToastContainer, toast } from 'react-toastify'
+// import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import AddProject from './Components/AddProject/AddProject';
 import View from './Components/View/View';
@@ -26,7 +26,7 @@ import AddTask from './Components/AddTask/AddTask';
 
 function App() {
 
-  let { userData, saveUserData, }: any = useContext(AuthContext)
+  let { userData }: any = useContext(AuthContext)
 
 
 

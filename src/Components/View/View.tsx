@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import { toast } from "react-toastify";
@@ -32,11 +32,11 @@ export default function View() {
     getUser();
   }, []);
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const handleShow: () => void = () => {
-    setShow(true);
+    // setShow(true);
   };
-  const handleClose: () => void = () => setShow(false);
+  // const handleClose: () => void = () => setShow(false);
 
 
 

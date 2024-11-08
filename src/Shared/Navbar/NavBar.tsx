@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 
 import myLogo from '../../assets/images/3 994372.svg'
 import { AuthContext } from '../../Context/AuthContext'
