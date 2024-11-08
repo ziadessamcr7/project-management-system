@@ -1,22 +1,22 @@
-import { createContext } from 'react'
-import { toast } from 'react-toastify'
+// import { createContext } from 'react'
+// import { toast } from 'react-toastify'
 
-export const Toaster: any = createContext(null)
+// export const Toaster: any = createContext(null)
 
-export default function ToastContextProvider({ children }: any) {
+// export default function ToastContextProvider({ children }: any) {
 
-    let getToast = (type: String, message: any) => {
-        return toast[type](message, {
-            autoClose: 2000
-        })
-    }
+//     let getToast = (type: any, message: any) => {
+//         return toast[type](message, {
+//             autoClose: 2000
+//         })
+//     }
 
 
 
-    return (
-        <Toaster.provider value={{ getToast }}>
-            {children}
-        </Toaster.provider>
-    )
+//     return (
+//         <Toaster.provider value={{ getToast }}>
+//             {children}
+//         </Toaster.provider>
+//     )
 
-}
+// }
