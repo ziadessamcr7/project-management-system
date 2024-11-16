@@ -28,7 +28,7 @@ export default function Projects() {
 
   const [modalState, setModalState] = useState('close');
 
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const {
     register,
@@ -138,7 +138,7 @@ export default function Projects() {
   }
   const handlePageChange = (data: any) => {
     const selectedPage = data.selected + 1;
-    setCurrentPage(selectedPage);
+    // setCurrentPage(selectedPage);
     getAllProjects(selectedPage, null);
   };
 
