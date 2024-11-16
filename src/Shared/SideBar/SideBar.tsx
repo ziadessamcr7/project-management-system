@@ -73,14 +73,14 @@ export default function SideBar() {
             </MenuItem> : ''}
 
             <MenuItem
-              title="recipes"
+              title="projetcs"
               icon={<i className="fa-solid fa-sheet-plastic"></i>}
               component={<Link to="/dashboard/projects" />}
             >
               Projects
             </MenuItem>
             <MenuItem
-              title="categories"
+              title="tasks"
               icon={<i className="fa-solid fa-list-check"></i>}
               component={<Link to="/dashboard/tasks" />}
             >

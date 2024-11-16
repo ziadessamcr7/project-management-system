@@ -6,6 +6,7 @@ import css from "./Users.module.css";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { Hourglass } from "react-loader-spinner";
+import ReactPaginate from "react-paginate";
 
 export default function Users() {
   const [usersList, setUsersList] = useState([]);
@@ -15,7 +16,7 @@ export default function Users() {
   const [filterRole, setFilterRole] = useState(null);
   // const [show, setShow] = useState(false);
   let { BaseUrl, requestHeaders }: any = useContext(AuthContext);
-  // const [toltalNumberOfPages, setToltalNumberOfPages] = useState(0);
+  const [toltalNumberOfPages, setToltalNumberOfPages] = useState(0);
   // let [CurrentPage, setCurrentPage] = useState(0);
 
   // const handleShow: (id: number) => void = (id) => {
@@ -31,12 +32,12 @@ export default function Users() {
     // console.log('this is userName ', userName);
     // console.log('this is grpus ', groups);
 
-    setIsLoading(true);
+    // setIsLoading(true);
     axios
       .get(`${BaseUrl}/Users/`, {
         headers: requestHeaders,
         params: {
-          pageSize: 20,
+          pageSize: 5,
           pageNumber: pageNum,
           userName: usrName,
           groups: grps
@@ -45,13 +46,13 @@ export default function Users() {
       .then((res: any) => {
         // console.log(res);
 
-        setIsLoading(false);
+        // setIsLoading(false);
         setUsersList(res?.data?.data);
-        // setToltalNumberOfPages(res?.data?.totalNumberOfPages);
+        setToltalNumberOfPages(res?.data?.totalNumberOfPages);
 
       })
       .catch((err: any) => {
-        setIsLoading(false);
+        // setIsLoading(false);
         toast.error(err?.response?.data?.message);
       });
   }
@@ -68,14 +69,14 @@ export default function Users() {
 
 
 
-  // let handlPageChange = (data: any) => {
-  //   console.log(data.selected + 1);
+  let handlPageChange = (data: any) => {
+    // console.log(data.selected + 1);
 
-  //   let currentPage = data.selected + 1
+    let currentPage = data.selected + 1
 
-  //   getUserList(currentPage, srchValue, filterRole)
+    getUserList(currentPage, srchValue, filterRole)
 
-  // }
+  }
 
 
   useEffect(() => {
@@ -112,7 +113,7 @@ export default function Users() {
               </div>
             </div>
           </div>
-          {isLoading ? (
+          {usersList.length == 0 ? (
             <div
               className={`text-center fs-1 text-success d-flex  justify-content-center align-items-center bg-light ${css.loadingHieght}`}
             >
@@ -123,7 +124,7 @@ export default function Users() {
                 ariaLabel="hourglass-loading"
                 wrapperStyle={{}}
                 wrapperClass="mt-5"
-                colors={['#306cce', '#72a1ed']}
+                colors={['#E39B1A', '#E39B1A']}
               />
             </div>
           ) : usersList?.length > 0 ? (
@@ -151,9 +152,9 @@ export default function Users() {
                           </span>
                         ) : (
                           <span
-                            className={`px-3 py-1 rounded-5 text-white ${css.noActive}`}
+                            className={`px-3 py-1 bg-danger rounded-5 text-white ${css.noActive}`}
                           >
-                            No Active
+                            Not Active
                           </span>
                         )}
                       </td>
@@ -179,11 +180,11 @@ export default function Users() {
                   ))}
                 </tbody>
               </Table>
-              {/* <ReactPaginate
+              <ReactPaginate
                 breakLabel={'...'}
                 pageCount={toltalNumberOfPages}
                 marginPagesDisplayed={2}
-                pageRangeDisplayed={8}
+                pageRangeDisplayed={2}
                 onPageChange={handlPageChange}
                 containerClassName='pagination justify-content-end'
                 pageClassName='page-item'
@@ -195,7 +196,7 @@ export default function Users() {
                 breakClassName='page-item'
                 breakLinkClassName='page-link'
                 activeClassName='active'
-              /> */}
+              />
             </div>
 
           ) : (

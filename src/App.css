@@ -60,10 +60,10 @@ textarea {
   background-color: rgba(207, 155, 10, 0.438) !important;
 }
 
-/* .active>.page-link,
+.active>.page-link,
 .page-link.active:hover {
-  background-color: rgb(47, 140, 51);
-} */
+  background-color: rgb(227 155 26) !important;
+}
 
 .dashboard-head {
   background-image: url('../src/assets/images/Rectangle.png');
@@ -92,4 +92,37 @@ textarea {
   background: #000;
   padding: 5px;
   z-index: 100000000000;
+}
+
+.side-bar {
+  padding-top: 50px;
+}
+
+/* to cancel the white thin border in the sidebar */
+.css-1wvake5 {
+  border: none !important;
+}
+
+.tasksWrapper {
+  background-color: #0E382F;
+}
+
+.singleTask {
+  background-color: rgb(231, 162, 33);
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.showPassEye {
+  position: absolute;
+  right: 15px;
+  top: 54px;
+}
+
+.hidePassEye {
+  position: absolute;
+  right: 15px;
+  top: 54px;
 }

@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthContext'
 export default function NavBar() {
 
   const { userData }: any = useContext(AuthContext)
-  console.log(userData)
+  // console.log(userData)
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">

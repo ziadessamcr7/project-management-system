@@ -46,6 +46,17 @@ export default function Login() {
       })
   }
 
+  const [password, setPassword] = useState('password')
+
+
+  const showPassword = () => {
+    setPassword('text')
+  }
+
+  const hidePassword = () => {
+    setPassword('password')
+  }
+
   return (
     <section id='login' className=''>
 
@@ -74,15 +85,25 @@ export default function Login() {
                 {errors.email && errors.email.type === 'pattern' && (<span className='text-danger d-block'>Enter a valid email</span>)
                 }
 
-                <label htmlFor="password" className="mt-4 fw-bold" style={{ color: 'rgb(227 156 26)' }}>Passwrod</label>
-                <input className="form-input"
-                  type="password"
-                  placeholder="Enter your password"
-                  id="password"
-                  {...register('password', {
-                    required: "password is required",
-                    pattern: /^[A-Za-z\d@$!%*#?&]{6,15}$/
-                  })} />
+                <div className='passwordWrapper'>
+                  <label htmlFor="password" className="mt-4 fw-bold" style={{ color: 'rgb(227 156 26)' }}>Passwrod</label>
+                  <input className="form-input"
+                    type={password}
+                    placeholder="Enter your password"
+                    id="password"
+                    {...register('password', {
+                      required: "password is required",
+                      pattern: /^[A-Za-z\d@$!%*#?&]{6,15}$/
+                    })} />
+                  {
+                    password === 'password' ?
+                      <i className='fa fa-eye showPassEye text-warning' onClick={showPassword}></i>
+                      :
+                      <i className='fa fa-eye-slash hidePassEye text-warning' onClick={hidePassword}></i>
+                  }
+
+                </div>
+
                 {errors.password &&
                   <span className='text-danger'> {errors.password.message} </span>}
                 {errors.password && errors.password.type == 'pattern' &&

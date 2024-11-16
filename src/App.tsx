@@ -11,7 +11,6 @@ import MasterLayout from './Shared/MasterLayout/MasterLayout';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Projects from './Components/Projects/Projects';
 import Users from './Components/Users/Users';
-import Tasks from './Components/Tasks/Tasks';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext';
@@ -23,6 +22,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddProject from './Components/AddProject/AddProject';
 import View from './Components/View/View';
 import AddTask from './Components/AddTask/AddTask';
+import AdminTasks from './Components/Tasks/AdminTasks/AdminTasks';
 
 function App() {
 
@@ -52,7 +52,7 @@ function App() {
       { index: true, element: <Dashboard /> },
       { path: 'projects', element: <Projects /> },
       { path: 'users', element: <Users /> },
-      { path: 'tasks', element: <Tasks /> },
+      { path: 'tasks', element: <AdminTasks /> },
       { path: 'add-project', element: <AddProject /> },
       { path: "user-details/:id", element: <View /> },
       { path: "add-task", element: <AddTask /> },

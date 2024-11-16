@@ -16,10 +16,10 @@ export default function AuthContextProvider(props: any) {
         let encodedData: any = localStorage.getItem("userTkn");
         let decodedData: any = jwtDecode(encodedData);
         setUserData(decodedData);
-        console.log(decodedData.userGroup);
+        // console.log(decodedData.userGroup);
 
         setUserRole(decodedData.userGroup)
-        console.log(decodedData.userGroup);
+        // console.log(decodedData.userGroup);
     };
 
     useEffect(() => {

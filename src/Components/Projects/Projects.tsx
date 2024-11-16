@@ -9,6 +9,7 @@ import { Modal } from 'react-bootstrap';
 import Loading from '../Loading/Loading';
 import { useForm } from 'react-hook-form';
 import noDataImg from '../../assets/images/freepik--Character--inject-70.png'
+import ReactPaginate from 'react-paginate';
 
 
 
@@ -23,9 +24,11 @@ export default function Projects() {
 
   const [projDetails, setProjDetails]: any = useState(0)
 
-  // const [toltalNumberOfPages, settotalNumOfPages] = useState(0)
+  const [toltalNumberOfPages, settotalNumOfPages] = useState(0)
 
   const [modalState, setModalState] = useState('close');
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const {
     register,
@@ -55,21 +58,23 @@ export default function Projects() {
   const handleClose = () => setModalState('close');
 
 
-  const getAllProjects = (pageNum: number, title: any) => {
-    setIsLoading(true)
+  const getAllProjects = (pageNum: number, title: string | null = null) => {
+    console.log('received pagenNumber:', pageNum);
+
+    // setIsLoading(true)
     axios.get(userRole == 'Manager' ? `${BaseUrl}/Project/manager` : `${BaseUrl}/Project/employee`, {
       headers: requestHeaders,
       params: {
-        pageSize: 5,
+        pageSize: 4,
         pageNumber: pageNum,
         title: title
       }
     }).then((response) => {
-      console.log(response.data.totalNumberOfPages);
+      // console.log(response.data.totalNumberOfPages);
       setProjectList(response?.data.data)
 
       setIsLoading(false)
-      // settotalNumOfPages(response?.data.totalNumberOfPages)
+      settotalNumOfPages(response?.data.totalNumberOfPages || 1)
     })
       .catch((error) => {
         console.log(error);
@@ -131,11 +136,11 @@ export default function Projects() {
 
     })
   }
-
-  // const handlePageChange = (data: any) => {
-  //   console.log(data);
-  //   getAllProjects(data.selected + 1, null)
-  // }
+  const handlePageChange = (data: any) => {
+    const selectedPage = data.selected + 1;
+    setCurrentPage(selectedPage);
+    getAllProjects(selectedPage, null);
+  };
 
   const searchProjcets = (e: any) => {
     console.log(e.target.value);
@@ -147,6 +152,8 @@ export default function Projects() {
   useEffect(() => {
     if (userRole) {
       getAllProjects(1, null)
+      console.log('a7aaaaaaaaaaaaaaaaaaaaaaaaa');
+
     }
 
   }, [userRole])
@@ -229,7 +236,7 @@ export default function Projects() {
 
 
 
-      {isloading ?
+      {projectList == 0 ?
         <div className='d-flex justify-content-center pt-5 mt-5'>
           <Hourglass
             visible={true}
@@ -238,7 +245,7 @@ export default function Projects() {
             ariaLabel="hourglass-loading"
             wrapperStyle={{}}
             wrapperClass=""
-            colors={['#306cce', '#72a1ed']}
+            colors={['#E39B1A', '#E39B1A']}
           />
         </div>
 
@@ -258,7 +265,7 @@ export default function Projects() {
               </thead>
               <tbody>
                 {projectList?.map((proj: any, idx: any) => {
-                  console.log(proj);
+                  // console.log(proj);
 
                   return <tr key={idx}>
                     <th scope="row"> {proj?.title} </th>
@@ -269,7 +276,7 @@ export default function Projects() {
                       {proj?.id}
                     </td>
                     <td >
-                      {proj?.creationDate}
+                      {proj?.creationDate.slice(0, 10)}
                     </td>
 
                     <td>
@@ -293,42 +300,28 @@ export default function Projects() {
 
               </tbody>
             </table>
-            {/* <ReactPaginate
+            <ReactPaginate
               breakLabel={'...'}
               pageCount={toltalNumberOfPages}
               marginPagesDisplayed={2}
               pageRangeDisplayed={2}
               onPageChange={handlePageChange}
-              containerClassName='pagination justify-content-end'
-              pageClassName='page-item'
-              pageLinkClassName='page-link'
-              previousClassName='page-item'
-              previousLinkClassName='page-link'
-              nextClassName='page-item'
-              nextLinkClassName='page-link'
-              breakClassName='page-item'
-              breakLinkClassName='page-link'
-              activeClassName='active'
-            /> */}
-
-            <nav aria-label="...">
-              <ul className="pagination">
-                <li className="page-item disabled">
-                  <a className="page-link" >Previous</a>
-                </li>
-                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                <li className="page-item active" aria-current="page">
-                  <a className="page-link" href="#">2</a>
-                </li>
-                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                <li className="page-item">
-                  <a className="page-link" href="#">Next</a>
-                </li>
-              </ul>
-            </nav>
+              containerClassName={'pagination justify-content-end'}
+              pageClassName={'page-item'}
+              pageLinkClassName={'page-link'}
+              previousClassName={'page-item'}
+              previousLinkClassName={'page-link'}
+              nextClassName={'page-item'}
+              nextLinkClassName={'page-link'}
+              breakClassName={'page-item'}
+              breakLinkClassName={'page-link'}
+              activeClassName={'active'}
+            />
 
 
-          </div> : <div className='text-center mt-5'> <img src={noDataImg} alt="" /> </div>}</>}
+
+          </div> : <div className='text-center mt-5'> <img src={noDataImg} alt="" /> </div>}</>
+      }
 
 
     </section>

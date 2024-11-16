@@ -8,8 +8,8 @@ export default function MasterLayout() {
 
             <div className="container-fluid">
                 <div className="d-flex">
-                    <div className="">
-                        <div className='bg-'>
+                    <div style={{ backgroundColor: '#0E382F' }}>
+                        <div className=''>
                             <SideBar />
                         </div>
                     </div>
