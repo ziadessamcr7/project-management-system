@@ -10,7 +10,6 @@ import ReactPaginate from "react-paginate";
 
 export default function Users() {
   const [usersList, setUsersList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   // const [id, setId] = useState(0);
   const [srchValue, setSrchValue] = useState(null);
   const [filterRole, setFilterRole] = useState(null);
